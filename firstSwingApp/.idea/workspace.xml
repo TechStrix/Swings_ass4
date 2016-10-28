@@ -31,31 +31,35 @@
       <file leaf-file-name="FirstSwingApp.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/FirstSwingApp.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            <state relative-caret-position="150">
+              <caret line="449" column="0" selection-start-line="449" selection-start-column="0" selection-end-line="449" selection-end-column="0" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
-                <element signature="e#7241#7249#0" expanded="true" />
-                <element signature="e#7567#7583#0" expanded="true" />
-                <element signature="e#7677#7685#0" expanded="true" />
-                <element signature="e#8962#8970#0" expanded="true" />
-                <element signature="e#9288#9304#0" expanded="true" />
-                <element signature="e#9398#9406#0" expanded="true" />
-                <element signature="e#10677#10685#0" expanded="true" />
-                <element signature="e#11003#11019#0" expanded="true" />
-                <element signature="e#11113#11121#0" expanded="true" />
-                <element signature="e#13601#13609#0" expanded="true" />
-                <element signature="e#13927#13943#0" expanded="true" />
-                <element signature="e#14037#14045#0" expanded="true" />
-                <element signature="e#15860#15868#0" expanded="true" />
-                <element signature="e#16186#16202#0" expanded="true" />
-                <element signature="e#16296#16304#0" expanded="true" />
-                <element signature="e#18215#18223#0" expanded="true" />
-                <element signature="e#18541#18557#0" expanded="true" />
-                <element signature="e#18651#18659#0" expanded="true" />
-                <element signature="e#21027#21035#0" expanded="true" />
-                <element signature="e#21353#21369#0" expanded="true" />
-                <element signature="e#21463#21471#0" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#12079#12087#0" expanded="true" />
+                <element signature="e#12405#12421#0" expanded="true" />
+                <element signature="e#12515#12523#0" expanded="true" />
+                <element signature="e#13800#13808#0" expanded="true" />
+                <element signature="e#14126#14142#0" expanded="true" />
+                <element signature="e#14236#14244#0" expanded="true" />
+                <element signature="e#15770#15778#0" expanded="true" />
+                <element signature="e#16096#16112#0" expanded="true" />
+                <element signature="e#16206#16214#0" expanded="true" />
+                <element signature="e#17608#17616#0" expanded="true" />
+                <element signature="e#17934#17950#0" expanded="true" />
+                <element signature="e#18044#18052#0" expanded="true" />
+                <element signature="e#21007#21015#0" expanded="true" />
+                <element signature="e#21333#21349#0" expanded="true" />
+                <element signature="e#21443#21451#0" expanded="true" />
+                <element signature="e#23268#23276#0" expanded="true" />
+                <element signature="e#23594#23610#0" expanded="true" />
+                <element signature="e#23704#23712#0" expanded="true" />
+                <element signature="e#25623#25631#0" expanded="true" />
+                <element signature="e#25949#25965#0" expanded="true" />
+                <element signature="e#26059#26067#0" expanded="true" />
+                <element signature="e#28899#28907#0" expanded="true" />
+                <element signature="e#29225#29241#0" expanded="true" />
+                <element signature="e#29335#29343#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -192,6 +196,7 @@
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="ToolWindowTerminal.ShowToolbar" value="false" />
   </component>
   <component name="RunManager" selected="Application.jframe1">
     <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
@@ -576,13 +581,13 @@
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3875" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3873582" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3419773" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2584814" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3296875" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -644,31 +649,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/FirstSwingApp.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+        <state relative-caret-position="150">
+          <caret line="449" column="0" selection-start-line="449" selection-start-column="0" selection-end-line="449" selection-end-column="0" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
-            <element signature="e#7241#7249#0" expanded="true" />
-            <element signature="e#7567#7583#0" expanded="true" />
-            <element signature="e#7677#7685#0" expanded="true" />
-            <element signature="e#8962#8970#0" expanded="true" />
-            <element signature="e#9288#9304#0" expanded="true" />
-            <element signature="e#9398#9406#0" expanded="true" />
-            <element signature="e#10677#10685#0" expanded="true" />
-            <element signature="e#11003#11019#0" expanded="true" />
-            <element signature="e#11113#11121#0" expanded="true" />
-            <element signature="e#13601#13609#0" expanded="true" />
-            <element signature="e#13927#13943#0" expanded="true" />
-            <element signature="e#14037#14045#0" expanded="true" />
-            <element signature="e#15860#15868#0" expanded="true" />
-            <element signature="e#16186#16202#0" expanded="true" />
-            <element signature="e#16296#16304#0" expanded="true" />
-            <element signature="e#18215#18223#0" expanded="true" />
-            <element signature="e#18541#18557#0" expanded="true" />
-            <element signature="e#18651#18659#0" expanded="true" />
-            <element signature="e#21027#21035#0" expanded="true" />
-            <element signature="e#21353#21369#0" expanded="true" />
-            <element signature="e#21463#21471#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#12079#12087#0" expanded="true" />
+            <element signature="e#12405#12421#0" expanded="true" />
+            <element signature="e#12515#12523#0" expanded="true" />
+            <element signature="e#13800#13808#0" expanded="true" />
+            <element signature="e#14126#14142#0" expanded="true" />
+            <element signature="e#14236#14244#0" expanded="true" />
+            <element signature="e#15770#15778#0" expanded="true" />
+            <element signature="e#16096#16112#0" expanded="true" />
+            <element signature="e#16206#16214#0" expanded="true" />
+            <element signature="e#17608#17616#0" expanded="true" />
+            <element signature="e#17934#17950#0" expanded="true" />
+            <element signature="e#18044#18052#0" expanded="true" />
+            <element signature="e#21007#21015#0" expanded="true" />
+            <element signature="e#21333#21349#0" expanded="true" />
+            <element signature="e#21443#21451#0" expanded="true" />
+            <element signature="e#23268#23276#0" expanded="true" />
+            <element signature="e#23594#23610#0" expanded="true" />
+            <element signature="e#23704#23712#0" expanded="true" />
+            <element signature="e#25623#25631#0" expanded="true" />
+            <element signature="e#25949#25965#0" expanded="true" />
+            <element signature="e#26059#26067#0" expanded="true" />
+            <element signature="e#28899#28907#0" expanded="true" />
+            <element signature="e#29225#29241#0" expanded="true" />
+            <element signature="e#29335#29343#0" expanded="true" />
           </folding>
         </state>
       </provider>

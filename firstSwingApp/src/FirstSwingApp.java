@@ -9,12 +9,14 @@
  * 4. Allows us to view the current state of table.
  * 5. User can see the Phone Number of a friend by entering it's Friend Number.
  * 6. User can see the Physical Address of a friend by entering it's Friend Number.
- *
+ * 7. Can click on a row on the jtable to populate fields in textfields.
  *
  */
 import java.awt.event.*;
 import java.sql.*;
 import javax.swing.*;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 
@@ -25,6 +27,8 @@ import java.sql.SQLException;
 import java.sql.CallableStatement;
 import java.util.Objects;
 import java.util.Vector;
+
+import static javax.swing.Action.MNEMONIC_KEY;
 
 
 public class FirstSwingApp extends JFrame{
@@ -42,6 +46,8 @@ public class FirstSwingApp extends JFrame{
     JButton jbtPhone;
     JButton jbtAdr;
     JButton jbtUpd;
+    JButton jbtPhone1;
+
 
     JLabel lblName;
     JTextField nameText;
@@ -68,7 +74,17 @@ public class FirstSwingApp extends JFrame{
     JLabel lblAdd2;
     JTextField add2Text;
 
+    JLabel lblEmail;
+    JTextField emailText;
+    JLabel lblPlat;
+    JTextField platText;
 
+    JLabel lblNotes;
+    JTextField notesText;
+    JLabel lblMeet;
+    JTextField meetText;
+    JLabel lblCall;
+    JTextField callText;
 
 
     JTable table;
@@ -121,6 +137,12 @@ public class FirstSwingApp extends JFrame{
         jbtUpd = new JButton("Update Contact");
         jbtUpd.addActionListener(new BtnUpd());
 
+        //Show contact upon click on table row
+
+        jbtPhone1 = new JButton("Show Phone No, of Selected Row");
+        jbtPhone1.addActionListener(new BtnPhone1(this));
+
+
 
         // UI Design and Layouts
 
@@ -156,6 +178,22 @@ public class FirstSwingApp extends JFrame{
         lblAdd2 = new JLabel("Address Line 2");
         add2Text = new JTextField(10);
 
+        lblEmail = new JLabel("Email Id");
+        emailText = new JTextField(10);
+
+        lblPlat = new JLabel("Platform");
+        platText = new JTextField(10);
+
+        lblNotes = new JLabel("Notes");
+        notesText = new JTextField(10);
+
+        lblMeet = new JLabel("Meeting");
+        meetText = new JTextField(3);
+
+        lblCall = new JLabel("Call");
+        callText = new JTextField(3);
+
+
         panelBtn = new JButton("pbutton");
 
         model = new DefaultTableModel();
@@ -164,9 +202,59 @@ public class FirstSwingApp extends JFrame{
 
         table = new JTable(model);
 
+        /*table.addMouseListener(new MouseAdapter() {
+
+            public void mouseClicked(MouseEvent e) {
+
+                String data = getSelectedRowData(table);
+
+                nameText.setText(String.valueOf(data.charAt(1)));
+                noText.setText(String.valueOf(data.charAt(2)));
+                bdateText.setText(String.valueOf(data.charAt(3)));
+                sexText.setText(String.valueOf(data.charAt(4)));
+                stateText.setText(String.valueOf(data.charAt(5)));
+                cityText.setText(String.valueOf(data.charAt(6)));
+                extText.setText(String.valueOf(data.charAt(7)));
+                phoneText.setText(String.valueOf(data.charAt(8)));
+                add1Text.setText(String.valueOf(data.charAt(9)));
+                add2Text.setText(String.valueOf(data.charAt(10)));
 
 
 
+            }
+
+        });*/
+
+        //populates textfields when a row of jtable is clicked
+
+        table.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
+            @Override
+            public void valueChanged(ListSelectionEvent e) {
+                int row = table.getSelectedRow();
+                System.out.println("Selecte table row = " + row);
+                if (row != -1) {
+                    int modelRow = table.convertRowIndexToModel(row);
+                    System.out.println("Selecte model row = " + row);
+
+                    Vector data = (Vector) ((DefaultTableModel) table.getModel()).getDataVector().get(modelRow);
+
+                    nameText.setText(data.get(0).toString());
+                    noText.setText(data.get(1).toString());
+                    bdateText.setText(data.get(2).toString());
+                    sexText.setText(data.get(3).toString());
+                    stateText.setText(data.get(4).toString());
+                    cityText.setText(data.get(5).toString());
+                    extText.setText(data.get(6).toString());
+                    phoneText.setText(data.get(7).toString());
+                    add1Text.setText(data.get(8).toString());
+                    add2Text.setText(data.get(9).toString());
+
+
+
+
+                }
+            }
+        });
 
         friendNo = urObjctInCell.toString();
 
@@ -216,6 +304,17 @@ public class FirstSwingApp extends JFrame{
         panel6.add(lblPhone);
         panel6.add(phoneText);
 
+        panel6.add(lblEmail);
+        panel6.add(emailText);
+        panel6.add(lblPlat);
+        panel6.add(platText);
+        panel6.add(lblNotes);
+        panel6.add(notesText);
+        panel6.add(lblMeet);
+        panel6.add(meetText);
+        panel6.add(lblCall);
+        panel6.add(callText);
+
         //Physical address panel
 
         JPanel panel7 = new JPanel();
@@ -236,6 +335,7 @@ public class FirstSwingApp extends JFrame{
         panel5.add(jbtView);
         panel5.add(jbtPhone);
         panel5.add(jbtAdr);
+        panel5.add(jbtPhone1);
         panel5.add(new JScrollPane(table));
 
 
@@ -255,13 +355,13 @@ public class FirstSwingApp extends JFrame{
 
         this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        this.setBounds(100,100,400,250);
+        this.setBounds(100,100,500,500);
 
         this.setTitle("gotta get that swing");
 
         this.setVisible(true);
 
-        this.setSize(700,400);
+        this.setSize(1200,1000);
 
 
 
@@ -286,6 +386,7 @@ public class FirstSwingApp extends JFrame{
         int col = 1;
         int row = table.getSelectedRow();
 
+
         if (col < 0 || row < 0) {
             return null; // no selection made, return null
         } else {
@@ -293,7 +394,59 @@ public class FirstSwingApp extends JFrame{
         }
     }
 
-    //BtnView class implements the View Table action of the button
+    public String getSelectedRowData() {
+
+        String data = new String();
+
+        int row = this.table.getSelectedRow();
+
+        if (row < 0) {
+            return null; // no selection made, return null
+        } else {
+
+            for(int i =0; i< 10; i++) {
+
+                data = this.table.getValueAt(row,i).toString();
+
+            }
+
+            return data;
+        }
+    }
+
+    /*private abstract class TableMouseListener implements MouseListener {
+
+
+        String data;
+
+        public void mouseEntered(MouseEvent e) {
+
+        }
+
+        public void mouseClicked(MouseEvent e) {
+
+            data = getSelectedRowData(table);
+
+            nameText.setText(String.valueOf(data.charAt(1)));
+            noText.setText(String.valueOf(data.charAt(2)));
+            bdateText.setText(String.valueOf(data.charAt(3)));
+            sexText.setText(String.valueOf(data.charAt(4)));
+            stateText.setText(String.valueOf(data.charAt(5)));
+            cityText.setText(String.valueOf(data.charAt(6)));
+            extText.setText(String.valueOf(data.charAt(7)));
+            phoneText.setText(String.valueOf(data.charAt(8)));
+            add1Text.setText(String.valueOf(data.charAt(9)));
+            add2Text.setText(String.valueOf(data.charAt(10)));
+
+
+
+        }
+
+    }*/
+
+
+
+        //BtnView class implements the View Table action of the button
 
     private class BtnView implements ActionListener{
 
@@ -406,6 +559,81 @@ public class FirstSwingApp extends JFrame{
         }
     }
 
+
+    public class BtnPhone1 extends AbstractAction {
+
+
+        private FirstSwingApp mainGui;
+
+        public BtnPhone1(FirstSwingApp mainGui) {
+            super("Press Me");
+            putValue(MNEMONIC_KEY, KeyEvent.VK_P);
+            this.mainGui = mainGui;
+        }
+
+        public void actionPerformed(ActionEvent e) {
+
+            Object cell = mainGui.getSelectedCell();
+
+            String fnumber = cell.toString();
+
+            CallableStatement dstmt = null;
+            CallableStatement cstmt = null;
+
+            ResultSet rs;
+
+
+            try {
+
+                conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Contact_Manager?user=root");
+
+
+                String SQL = "{call show_phone (?)}";
+
+                cstmt = conn.prepareCall(SQL);
+
+                cstmt.setString(1, fnumber);
+
+                rs = cstmt.executeQuery();
+
+                ResultSetMetaData metaData = rs.getMetaData();
+
+                // names of columns
+                Vector<String> columnNames = new Vector<String>();
+                int columnCount = metaData.getColumnCount();
+                for (int column = 1; column <= columnCount; column++) {
+                    columnNames.add(metaData.getColumnName(column));
+                }
+
+                // data of the table
+                Vector<Vector<Object>> data = new Vector<Vector<Object>>();
+                while (rs.next()) {
+                    Vector<Object> vector = new Vector<Object>();
+                    for (int columnIndex = 1; columnIndex <= columnCount; columnIndex++) {
+                        vector.add(rs.getObject(columnIndex));
+                    }
+                    data.add(vector);
+                }
+
+                // It creates and displays the table
+
+
+                model.setDataVector(data, columnNames);
+
+                // Closes the Connection
+
+                dstmt.close();
+                System.out.println("Success!!");
+            } catch (SQLException ex) {
+
+                System.out.println("Error in connection: " + ex.getMessage());
+            }
+
+
+        }
+
+    }
+
     // BtnAdr class for viewing the addresses
 
     private class BtnAdr implements ActionListener{
@@ -482,6 +710,12 @@ public class FirstSwingApp extends JFrame{
             String add1 = add1Text.getText();
             String add2 = add2Text.getText();
 
+            String email = emailText.getText();
+            String platform = platText.getText();
+            String notes= notesText.getText();
+            String meeting = meetText.getText();
+            String call = callText.getText();
+
 
 
 
@@ -500,7 +734,7 @@ public class FirstSwingApp extends JFrame{
 
                 //calling stored procedure add_contact()
 
-                String SQL = "{call add_contact (?,?,?,?,?,?,?,?,?,?)}";
+                String SQL = "{call add_contact (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
 
                 String disQuery = "select * from FRIEND";
 
@@ -518,6 +752,12 @@ public class FirstSwingApp extends JFrame{
                 cstmt.setString(8, phone);
                 cstmt.setString(9, add1);
                 cstmt.setString(10, add2);
+                cstmt.setString(11, email);
+                cstmt.setString(12, platform);
+                cstmt.setString(9, notes);
+                cstmt.setString(10, meeting);
+                cstmt.setString(11, call);
+
 
 
                 //executing query ie. the stored procedure
@@ -584,6 +824,8 @@ public class FirstSwingApp extends JFrame{
             String sex = sexText.getText();
             String state = stateText.getText();
             String city = cityText.getText();
+
+
 
 
             CallableStatement cstmt = null;
@@ -751,6 +993,12 @@ public class FirstSwingApp extends JFrame{
             String add1 = add1Text.getText();
             String add2 = add2Text.getText();
 
+            String email = emailText.getText();
+            String platform = platText.getText();
+            String notes= notesText.getText();
+            String meeting = meetText.getText();
+            String call = callText.getText();
+
 
 
 
@@ -784,6 +1032,11 @@ public class FirstSwingApp extends JFrame{
                 cstmt.setString(9, add1);
                 cstmt.setString(10, add2);
 
+                cstmt.setString(11, email);
+                cstmt.setString(12, platform);
+                cstmt.setString(9, notes);
+                cstmt.setString(10, meeting);
+                cstmt.setString(11, call);
 
 
                 cstmt.executeQuery();
