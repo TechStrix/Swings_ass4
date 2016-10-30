@@ -242,12 +242,18 @@ public class FirstSwingApp extends JFrame{
                     noText.setText(data.get(1).toString());
                     bdateText.setText(data.get(2).toString());
                     sexText.setText(data.get(3).toString());
-                    stateText.setText(data.get(4).toString());
-                    cityText.setText(data.get(5).toString());
+                    cityText.setText(data.get(4).toString());
+                    stateText.setText(data.get(5).toString());
                     extText.setText(data.get(6).toString());
                     phoneText.setText(data.get(7).toString());
                     add1Text.setText(data.get(8).toString());
                     add2Text.setText(data.get(9).toString());
+                    emailText.setText(data.get(10).toString());
+                    platText.setText(data.get(11).toString());
+                    notesText.setText(data.get(12).toString());
+                    meetText.setText(data.get(13).toString());
+                    callText.setText(data.get(14).toString());
+
 
 
 
@@ -336,9 +342,15 @@ public class FirstSwingApp extends JFrame{
         panel5.add(jbtPhone);
         panel5.add(jbtAdr);
         panel5.add(jbtPhone1);
-        panel5.add(new JScrollPane(table));
+
+        JPanel panel8 = new JPanel();
+        panel8.setLayout(new FlowLayout(FlowLayout.LEFT));
+        panel8.setSize(1000,1000);
+        panel8.add(new JScrollPane(table));
 
 
+        table.setSize(1000,1000);
+        table.setAutoResizeMode( JTable.AUTO_RESIZE_OFF );
 
         this.add(panel1);
         this.add(panel2);
@@ -347,6 +359,7 @@ public class FirstSwingApp extends JFrame{
         this.add(panel7);
         this.add(panel4);
         this.add(panel5);
+        this.add(panel8);
 
 
 
@@ -461,7 +474,12 @@ public class FirstSwingApp extends JFrame{
             try {
 
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Contact_Manager?user=root");
-                String disQuery = "select * from FRIEND";
+                //String disQuery = "select * from FRIEND, PHONE_NUMBERS, PHYSICAL_ADDRESS, EMAIL_ADDRESSES, APPOINTMENTS where ";
+
+                String disQuery = "\n" +
+                        "select FRIEND.F_Name, FRIEND.F_no,FRIEND.Birth_date,FRIEND.Gender,FRIEND.City,FRIEND.State, PHONE_NUMBERS.Extension, PHONE_NUMBERS.Ph_No, PHYSICAL_ADDRESS.Address_Line1, PHYSICAL_ADDRESS.Address_Line2, EMAIL_ADDRESSES.Email_Address, EMAIL_ADDRESSES.Platform, APPOINTMENTS.Notes, APPOINTMENTS.Meeting,APPOINTMENTS.Calls\n" +
+                        "from FRIEND,PHONE_NUMBERS, PHYSICAL_ADDRESS, EMAIL_ADDRESSES, APPOINTMENTS\n" +
+                        "where FRIEND.F_no = PHONE_NUMBERS.F_number  = PHYSICAL_ADDRESS.F_number = EMAIL_ADDRESSES.F_number = APPOINTMENTS.Fr_No;\n";
 
                 dstmt = conn.prepareCall(disQuery);
 
@@ -713,9 +731,9 @@ public class FirstSwingApp extends JFrame{
             String email = emailText.getText();
             String platform = platText.getText();
             String notes= notesText.getText();
+
             String meeting = meetText.getText();
             String call = callText.getText();
-
 
 
 
@@ -736,9 +754,16 @@ public class FirstSwingApp extends JFrame{
 
                 String SQL = "{call add_contact (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
 
-                String disQuery = "select * from FRIEND";
+                String disQuery = "\n" +
+                        "select FRIEND.F_Name, FRIEND.F_no,FRIEND.Birth_date,FRIEND.Gender,FRIEND.City,FRIEND.State, PHONE_NUMBERS.Extension, PHONE_NUMBERS.Ph_No, PHYSICAL_ADDRESS.Address_Line1, PHYSICAL_ADDRESS.Address_Line2, EMAIL_ADDRESSES.Email_Address, EMAIL_ADDRESSES.Platform, APPOINTMENTS.Notes, APPOINTMENTS.Meeting,APPOINTMENTS.Calls\n" +
+                        "from FRIEND,PHONE_NUMBERS, PHYSICAL_ADDRESS, EMAIL_ADDRESSES, APPOINTMENTS\n" +
+                        "where FRIEND.F_no = PHONE_NUMBERS.F_number  = PHYSICAL_ADDRESS.F_number = EMAIL_ADDRESSES.F_number = APPOINTMENTS.Fr_No;\n";
+
 
                 cstmt = conn.prepareCall(SQL);
+
+
+                //String disQuery = "select * from FRIEND";
 
                 dstmt = conn.prepareCall(disQuery);
 
@@ -754,15 +779,24 @@ public class FirstSwingApp extends JFrame{
                 cstmt.setString(10, add2);
                 cstmt.setString(11, email);
                 cstmt.setString(12, platform);
-                cstmt.setString(9, notes);
-                cstmt.setString(10, meeting);
-                cstmt.setString(11, call);
+                cstmt.setString(13, notes);
+                cstmt.setString(14, meeting);
+                cstmt.setString(15, call);
 
-
+                System.out.print(meeting);
 
                 //executing query ie. the stored procedure
 
-                cstmt.executeQuery();
+                if(meeting.equals("1")|| meeting.equals("0")) {
+
+                    cstmt.executeQuery();
+
+                }
+                else {
+                    JOptionPane.showMessageDialog(null,
+                            "1 or 0 are the only valid inputs for meeting and call");
+                }
+
 
                 rs = dstmt.executeQuery();
 
@@ -819,7 +853,7 @@ public class FirstSwingApp extends JFrame{
         public void actionPerformed(ActionEvent e) {
 
             String name = nameText.getText();
-            String fnumber = noText.getText();
+            int fnumber = ((int) noText.getText().charAt(1));
             String bdate = bdateText.getText();
             String sex = sexText.getText();
             String state = stateText.getText();
@@ -841,14 +875,17 @@ public class FirstSwingApp extends JFrame{
 
                 String SQL = "{call delete_contact (?)}";
 
-                String disQuery = "select * from FRIEND";
+                String disQuery = "\n" +
+                        "select FRIEND.F_Name, FRIEND.F_no,FRIEND.Birth_date,FRIEND.Gender,FRIEND.City,FRIEND.State, PHONE_NUMBERS.Extension, PHONE_NUMBERS.Ph_No, PHYSICAL_ADDRESS.Address_Line1, PHYSICAL_ADDRESS.Address_Line2, EMAIL_ADDRESSES.Email_Address, EMAIL_ADDRESSES.Platform, APPOINTMENTS.Notes, APPOINTMENTS.Meeting,APPOINTMENTS.Calls\n" +
+                        "from FRIEND,PHONE_NUMBERS, PHYSICAL_ADDRESS, EMAIL_ADDRESSES, APPOINTMENTS\n" +
+                        "where FRIEND.F_no = PHONE_NUMBERS.F_number  = PHYSICAL_ADDRESS.F_number = EMAIL_ADDRESSES.F_number = APPOINTMENTS.Fr_No;\n";
 
                 cstmt = conn.prepareCall(SQL);
 
                 dstmt = conn.prepareCall(disQuery);
 
 
-                cstmt.setString(1, fnumber);
+                cstmt.setInt(1, fnumber);
 
                 cstmt.executeQuery();
 
@@ -912,7 +949,7 @@ public class FirstSwingApp extends JFrame{
 
             Object cell = mainGui.getSelectedCell();
 
-            String fnumber = cell.toString();
+            String fnumber = noText.getText();
 
             CallableStatement dstmt = null;
             CallableStatement cstmt = null;
@@ -927,7 +964,10 @@ public class FirstSwingApp extends JFrame{
 
                 String SQL = "{call delete_contact (?)}";
 
-                String disQuery = "select * from FRIEND";
+                String disQuery = "\n" +
+                        "select FRIEND.F_Name, FRIEND.F_no,FRIEND.Birth_date,FRIEND.Gender,FRIEND.City,FRIEND.State, PHONE_NUMBERS.Extension, PHONE_NUMBERS.Ph_No, PHYSICAL_ADDRESS.Address_Line1, PHYSICAL_ADDRESS.Address_Line2, EMAIL_ADDRESSES.Email_Address, EMAIL_ADDRESSES.Platform, APPOINTMENTS.Notes, APPOINTMENTS.Meeting,APPOINTMENTS.Calls\n" +
+                        "from FRIEND,PHONE_NUMBERS, PHYSICAL_ADDRESS, EMAIL_ADDRESSES, APPOINTMENTS\n" +
+                        "where FRIEND.F_no = PHONE_NUMBERS.F_number  = PHYSICAL_ADDRESS.F_number = EMAIL_ADDRESSES.F_number = APPOINTMENTS.Fr_No;\n";
 
                 dstmt = conn.prepareCall(disQuery);
                 cstmt = conn.prepareCall(SQL);
@@ -1013,9 +1053,12 @@ public class FirstSwingApp extends JFrame{
                 conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/Contact_Manager?user=root");
 
 
-                String SQL = "{call update_contact (?,?,?,?,?,?,?,?,?,?)}";
+                String SQL = "{call update_contact (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)}";
 
-                String disQuery = "select * from FRIEND";
+                String disQuery = "\n" +
+                        "select FRIEND.F_Name, FRIEND.F_no,FRIEND.Birth_date,FRIEND.Gender,FRIEND.City,FRIEND.State, PHONE_NUMBERS.Extension, PHONE_NUMBERS.Ph_No, PHYSICAL_ADDRESS.Address_Line1, PHYSICAL_ADDRESS.Address_Line2, EMAIL_ADDRESSES.Email_Address, EMAIL_ADDRESSES.Platform, APPOINTMENTS.Notes, APPOINTMENTS.Meeting,APPOINTMENTS.Calls\n" +
+                        "from FRIEND,PHONE_NUMBERS, PHYSICAL_ADDRESS, EMAIL_ADDRESSES, APPOINTMENTS\n" +
+                        "where FRIEND.F_no = PHONE_NUMBERS.F_number  = PHYSICAL_ADDRESS.F_number = EMAIL_ADDRESSES.F_number = APPOINTMENTS.Fr_No;\n";
 
                 cstmt = conn.prepareCall(SQL);
 
@@ -1031,12 +1074,11 @@ public class FirstSwingApp extends JFrame{
                 cstmt.setString(8, phone);
                 cstmt.setString(9, add1);
                 cstmt.setString(10, add2);
-
                 cstmt.setString(11, email);
                 cstmt.setString(12, platform);
-                cstmt.setString(9, notes);
-                cstmt.setString(10, meeting);
-                cstmt.setString(11, call);
+                cstmt.setString(13, notes);
+                cstmt.setString(14, meeting);
+                cstmt.setString(15, call);
 
 
                 cstmt.executeQuery();
